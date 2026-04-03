@@ -4,24 +4,26 @@
  *
  * Same functionality as audio-param-polyfill.ts, but instead of auto-patching
  * AudioParam.prototype on import, you explicitly polyfill individual AudioParam
- * instances by calling polyfillAudioParam(param).
+ * instances by calling polyfillAudioParam(param), or patch the prototype
+ * globally by calling polyfillAudioParamPrototype().
  *
  * This gives you control over:
- *  - Which AudioParams get polyfilled
+ *  - Which AudioParams get polyfilled (per-instance or all via prototype)
  *  - When polyfilling happens (useful if you have other polyfills)
- *  - Avoiding prototype-level monkey-patching
+ *  - Choosing between instance-level or prototype-level patching
  *
- * Usage:
+ * Usage (per-instance):
  *   import { polyfillAudioParam } from "./audio-param-polyfill-manual";
  *
  *   const ctx = new AudioContext();
  *   const gain = ctx.createGain();
  *   polyfillAudioParam(gain.gain);
  *
- *   // Now gain.gain has cancelAndHoldAtTime and getScheduledValueAtTime
- *   gain.gain.setValueAtTime(0, ctx.currentTime);
- *   gain.gain.linearRampToValueAtTime(1, ctx.currentTime + 1);
- *   gain.gain.cancelAndHoldAtTime(ctx.currentTime + 0.5);
+ * Usage (prototype-level):
+ *   import { polyfillAudioParamPrototype } from "./audio-param-polyfill-manual";
+ *
+ *   polyfillAudioParamPrototype();
+ *   // All AudioParam instances now have cancelAndHoldAtTime and getScheduledValueAtTime
  */
 
 type EventType =
@@ -426,4 +428,188 @@ export function polyfillAudioNode(node: AudioNode): AudioNode {
     }
   }
   return node;
+}
+
+// Track whether the prototype has already been polyfilled
+let prototypePolyfilled = false;
+
+/**
+ * Polyfill AudioParam.prototype so that ALL AudioParam instances get:
+ *  - cancelAndHoldAtTime (if missing)
+ *  - getScheduledValueAtTime
+ *  - Event tracking on all scheduling methods
+ *
+ * This is equivalent to what the auto-polyfill (audio-param-polyfill.ts) does,
+ * but invoked manually so you control when it happens.
+ *
+ * Safe to call multiple times (no-ops on subsequent calls).
+ */
+export function polyfillAudioParamPrototype(): void {
+  if (prototypePolyfilled) return;
+  if (typeof AudioParam === "undefined") return;
+  prototypePolyfilled = true;
+
+  const proto = AudioParam.prototype;
+
+  // Save original methods from the prototype
+  const origSetValueAtTime = proto.setValueAtTime;
+  const origLinearRamp = proto.linearRampToValueAtTime;
+  const origExponentialRamp = proto.exponentialRampToValueAtTime;
+  const origSetTarget = proto.setTargetAtTime;
+  const origSetValueCurve = proto.setValueCurveAtTime;
+  const origCancelScheduled = proto.cancelScheduledValues;
+
+  // ─── Wrap scheduling methods to track events ───────────────────────
+
+  proto.setValueAtTime = function (value: number, startTime: number): AudioParam {
+    const tl = getTimeline(this);
+    insertEvent(tl, { type: "setValueAtTime", value, time: startTime });
+    return origSetValueAtTime.call(this, value, startTime);
+  };
+
+  proto.linearRampToValueAtTime = function (value: number, endTime: number): AudioParam {
+    const tl = getTimeline(this);
+    insertEvent(tl, { type: "linearRamp", value, time: endTime });
+    return origLinearRamp.call(this, value, endTime);
+  };
+
+  proto.exponentialRampToValueAtTime = function (value: number, endTime: number): AudioParam {
+    const tl = getTimeline(this);
+    insertEvent(tl, { type: "exponentialRamp", value, time: endTime });
+    return origExponentialRamp.call(this, value, endTime);
+  };
+
+  proto.setTargetAtTime = function (
+    target: number,
+    startTime: number,
+    timeConstant: number
+  ): AudioParam {
+    const tl = getTimeline(this);
+    insertEvent(tl, {
+      type: "setTarget",
+      value: target,
+      time: startTime,
+      timeConstant,
+    });
+    return origSetTarget.call(this, target, startTime, timeConstant);
+  };
+
+  proto.setValueCurveAtTime = function (
+    values: Iterable<number>,
+    startTime: number,
+    duration: number
+  ): AudioParam {
+    const arr = values instanceof Float32Array ? values : new Float32Array(values as number[]);
+    const tl = getTimeline(this);
+    insertEvent(tl, {
+      type: "setValueCurve",
+      value: arr[arr.length - 1]!,
+      time: startTime,
+      duration,
+      curve: new Float32Array(arr),
+    });
+    return origSetValueCurve.call(this, values, startTime, duration);
+  };
+
+  proto.cancelScheduledValues = function (startTime: number): AudioParam {
+    const tl = timelines.get(this);
+    if (tl) {
+      removeEventsFrom(tl, startTime);
+    }
+    return origCancelScheduled.call(this, startTime);
+  };
+
+  // ─── Polyfill cancelAndHoldAtTime (only if missing) ────────────────
+
+  if (typeof proto.cancelAndHoldAtTime !== "function") {
+    proto.cancelAndHoldAtTime = function (cancelTime: number): AudioParam {
+      const tl = timelines.get(this);
+      const holdValue = computeValueAtTime(this, cancelTime);
+      const active = findActiveAutomation(tl, cancelTime);
+
+      if (active.type === "linearRamp" || active.type === "exponentialRamp") {
+        origCancelScheduled.call(this, cancelTime);
+        if (tl) removeEventsFrom(tl, cancelTime);
+
+        if (active.type === "linearRamp") {
+          origLinearRamp.call(this, holdValue, cancelTime);
+          if (tl)
+            insertEvent(tl, {
+              type: "linearRamp",
+              value: holdValue,
+              time: cancelTime,
+            });
+        } else {
+          const safeHold = holdValue === 0 ? 1e-30 : holdValue;
+          origExponentialRamp.call(this, safeHold, cancelTime);
+          if (tl)
+            insertEvent(tl, {
+              type: "exponentialRamp",
+              value: safeHold,
+              time: cancelTime,
+            });
+        }
+      } else if (active.type === "setValueCurve") {
+        const curveEv = active.event!;
+        const curveStart = curveEv.time;
+        const curveDuration = curveEv.duration!;
+        const origCurve = curveEv.curve!;
+
+        origCancelScheduled.call(this, curveStart);
+        if (tl) removeEventsFrom(tl, curveStart);
+
+        const truncDuration = cancelTime - curveStart;
+        if (truncDuration > 0 && origCurve.length >= 2) {
+          const fraction = truncDuration / curveDuration;
+          const numSamples = Math.max(2, Math.round(origCurve.length * fraction));
+          const truncCurve = new Float32Array(numSamples);
+          for (let j = 0; j < numSamples; j++) {
+            const t = (j / (numSamples - 1)) * fraction;
+            const scaledIdx = t * (origCurve.length - 1);
+            const lo = Math.floor(scaledIdx);
+            const hi = Math.min(lo + 1, origCurve.length - 1);
+            const interp = scaledIdx - lo;
+            truncCurve[j] = origCurve[lo]! * (1 - interp) + origCurve[hi]! * interp;
+          }
+          truncCurve[truncCurve.length - 1] = holdValue;
+
+          origSetValueCurve.call(this, truncCurve, curveStart, truncDuration);
+          if (tl)
+            insertEvent(tl, {
+              type: "setValueCurve",
+              value: holdValue,
+              time: curveStart,
+              duration: truncDuration,
+              curve: truncCurve,
+            });
+        }
+
+        origSetValueAtTime.call(this, holdValue, cancelTime);
+        if (tl)
+          insertEvent(tl, {
+            type: "setValueAtTime",
+            value: holdValue,
+            time: cancelTime,
+          });
+      } else {
+        origCancelScheduled.call(this, cancelTime);
+        if (tl) removeEventsFrom(tl, cancelTime);
+        origSetValueAtTime.call(this, holdValue, cancelTime);
+        if (tl)
+          insertEvent(tl, {
+            type: "setValueAtTime",
+            value: holdValue,
+            time: cancelTime,
+          });
+      }
+
+      return this;
+    };
+  }
+
+  // ─── Always add getScheduledValueAtTime ──────────────────────────────
+
+  (proto as any).getScheduledValueAtTime = function (time: number): number {
+    return computeValueAtTime(this, time);
+  };
 }
