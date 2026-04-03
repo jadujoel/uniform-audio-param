@@ -46,7 +46,7 @@ Or as an ES module:
 </script>
 ```
 
-### Usage
+### Usage (auto-patching)
 
 Once loaded (via import or script tag), the polyfill patches `AudioParam.prototype` automatically. Use the Web Audio API as normal:
 
@@ -60,6 +60,28 @@ gain.gain.setValueAtTime(1, ctx.currentTime);
 gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 1);
 
 // cancelAndHoldAtTime now works in Firefox too
+gain.gain.cancelAndHoldAtTime(ctx.currentTime + 0.5);
+```
+
+### Usage (manual)
+
+If you prefer not to patch `AudioParam.prototype`, import from `@jadujoel/uniform-audio-param/manual` and polyfill individual params:
+
+```js
+import { polyfillAudioParam, polyfillAudioNode } from "@jadujoel/uniform-audio-param/manual";
+
+const ctx = new AudioContext();
+const gain = ctx.createGain();
+
+// Polyfill a single AudioParam
+polyfillAudioParam(gain.gain);
+
+// Or polyfill all AudioParams on a node at once
+const biquad = ctx.createBiquadFilter();
+polyfillAudioNode(biquad); // patches frequency, detune, Q, gain
+
+gain.gain.setValueAtTime(1, ctx.currentTime);
+gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 1);
 gain.gain.cancelAndHoldAtTime(ctx.currentTime + 0.5);
 ```
 

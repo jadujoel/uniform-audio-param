@@ -15,6 +15,9 @@
     }
   },
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.1",
   "scripts": {
     "build": "bun build audio-param-polyfill.ts audio-param-polyfill-manual.ts --outdir dist --minify && bunx tsc --declaration --emitDeclarationOnly --outDir dist audio-param-polyfill.ts audio-param-polyfill-manual.ts",
