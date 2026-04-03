@@ -1,0 +1,1388 @@
+[
+  {
+    "browser": "Chromium",
+    "version": "147.0.7727.15",
+    "results": [
+      {
+        "testName": "1. AudioParam.value setter (immediate)",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Initial value after set: 0.5",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "2. setValueAtTime basic",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately after scheduling: 1",
+          "Value after full render: 1"
+        ]
+      },
+      {
+        "testName": "3. linearRampToValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render (should be ~1.0 at end): 1"
+        ]
+      },
+      {
+        "testName": "4. exponentialRampToValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "5. setTargetAtTime",
+        "values": [
+          0.9998569488525391
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after 1s render (target=1.0, tau=0.1): 0.9998569488525391"
+        ]
+      },
+      {
+        "testName": "6. setValueCurveAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "7. cancelScheduledValues - cancel ramp mid-way",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately after cancel: 1",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "8. cancelAndHoldAtTime - basic linear ramp",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value immediately: 1",
+          "Value after render (should hold at ~0.5): 0.5"
+        ]
+      },
+      {
+        "testName": "9. cancelAndHoldAtTime - exponential ramp",
+        "values": [
+          0.09999999403953552
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value after render: 0.09999999403953552"
+        ]
+      },
+      {
+        "testName": "10. cancelAndHoldAtTime - setTargetAtTime",
+        "values": [
+          0.9502127766609192
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value after render: 0.9502127766609192"
+        ]
+      },
+      {
+        "testName": "11. cancelAndHoldAtTime - setValueCurveAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "12. linearRamp without prior setValueAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "13. exponentialRamp without prior setValueAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "14. Multiple setValueAtTime at same time",
+        "values": [
+          0.8999999761581421
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render (last write wins?): 0.8999999761581421"
+        ]
+      },
+      {
+        "testName": "15. cancelScheduledValues then re-schedule",
+        "values": [
+          0.30000001192092896
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after render: 0.30000001192092896"
+        ]
+      },
+      {
+        "testName": "16. cancelAndHoldAtTime then new linearRamp",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHold + new ramp succeeded",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "17. value setter during active automation",
+        "values": [
+          0.9999947547912598
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after direct set: 0.75",
+          "Value after render: 0.9999947547912598"
+        ]
+      },
+      {
+        "testName": "18. exponentialRamp with zero values",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "exponentialRamp from 0: no error thrown",
+          "exponentialRamp to 0 threw: Failed to execute 'exponentialRampToValueAtTime' on 'AudioParam': The float target value provided (0) should not be in the range (-1.40130e-45, 1.40130e-45).",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "19. setValueCurveAtTime overlap with setValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "setValueAtTime during curve threw: Failed to execute 'setValueAtTime' on 'AudioParam': setValueAtTime(0.75, 0.25) overlaps setValueCurveAtTime(..., 0, 0.5)",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "20. Multiple cancelAndHoldAtTime calls",
+        "values": [
+          0.5249999761581421
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Double cancelAndHold succeeded",
+          "Value after render: 0.5249999761581421"
+        ]
+      },
+      {
+        "testName": "21. Sample-accurate values mid-ramp via OfflineAudioContext",
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          0.999958336353302
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Sample[0] = 0.000000",
+          "Sample[6000] = 0.250000",
+          "Sample[12000] = 0.500000",
+          "Sample[18000] = 0.750000",
+          "Sample[23999] = 0.999958"
+        ]
+      },
+      {
+        "testName": "22. cancelAndHoldAtTime sample-accurate capture",
+        "values": [
+          0.25,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHold at 0.5s",
+          "t=0.25s sample[12000] = 0.250000",
+          "t=0.5s sample[24000] = 0.500000",
+          "t=0.75s sample[36000] = 0.500000",
+          "t=1s sample[47999] = 0.500000"
+        ]
+      },
+      {
+        "testName": "23. cancelScheduledValues sample-accurate capture",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.25s sample[12000] = 0.000000",
+          "t=0.49s sample[23520] = 0.000000",
+          "t=0.5s sample[24000] = 0.000000",
+          "t=0.51s sample[24480] = 0.000000",
+          "t=0.75s sample[36000] = 0.000000",
+          "t=1s sample[47999] = 0.000000"
+        ]
+      },
+      {
+        "testName": "24. setTargetAtTime convergence precision",
+        "values": [
+          0.6321197152137756,
+          0.864664614200592,
+          0.9502127766609192,
+          0.9932624101638794,
+          0.9998569488525391
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.1s actual=0.632120 expected=0.632121 diff=0.00000084",
+          "t=0.2s actual=0.864665 expected=0.864665 diff=0.00000010",
+          "t=0.3s actual=0.950213 expected=0.950213 diff=0.00000015",
+          "t=0.5s actual=0.993262 expected=0.993262 diff=0.00000036",
+          "t=1s actual=0.999857 expected=0.999955 diff=0.00009765"
+        ]
+      },
+      {
+        "testName": "25. AudioParam defaultValue, minValue, maxValue",
+        "values": [
+          1,
+          440,
+          350
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "gain.gain: default=1 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "osc.frequency: default=440 min=-24000 max=24000",
+          "osc.detune: default=0 min=-153600 max=153600",
+          "biquad.frequency: default=350 min=0 max=24000",
+          "biquad.Q: default=1 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "biquad.gain: default=0 min=-3.4028234663852886e+38 max=1541.273681640625"
+        ]
+      },
+      {
+        "testName": "26. setValueAtTime with negative time",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "setValueAtTime(-1) threw: RangeError: Failed to execute 'setValueAtTime' on 'AudioParam': Time must be a finite non-negative number: -1"
+        ]
+      },
+      {
+        "testName": "27. cancelAndHoldAtTime at time 0",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime(0): succeeded",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "28. cancelScheduledValues at time 0 (cancel everything)",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "29. Value after ramp completes (no further events)",
+        "values": [
+          0.20000000298023224,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.1s = 0.200000",
+          "t=0.25s = 0.500000",
+          "t=0.5s = 0.500000",
+          "t=0.75s = 0.500000",
+          "t=1s = 0.500000"
+        ]
+      },
+      {
+        "testName": "30. cancelAndHoldAtTime after events already finished",
+        "values": [
+          0.4000000059604645,
+          1,
+          1,
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime(0.5) after ramp ends at 0.25: ok",
+          "t=0.1s = 0.400000",
+          "t=0.25s = 1.000000",
+          "t=0.5s = 1.000000",
+          "t=0.75s = 1.000000"
+        ]
+      },
+      {
+        "testName": "31. automationRate a-rate vs k-rate",
+        "values": [
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "a-rate samples: [0]=0.0000 [64]=0.2500 [128]=0.5000 [255]=0.9961",
+          "k-rate samples: [0]=0.0000 [64]=0.0000 [128]=0.5000 [255]=0.5000",
+          "k-rate staircase pattern: true"
+        ]
+      },
+      {
+        "testName": "32. setValueCurveAtTime with single-value curve",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Single-value curve threw: InvalidStateError: Failed to execute 'setValueCurveAtTime' on 'AudioParam': The curve length provided (1) is less than the minimum bound (2)."
+        ]
+      },
+      {
+        "testName": "33. setValueCurveAtTime with zero duration",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Zero duration curve threw: RangeError: Failed to execute 'setValueCurveAtTime' on 'AudioParam': Duration must be a finite positive number: 0"
+        ]
+      },
+      {
+        "testName": "34. Many scheduled events performance",
+        "values": [
+          0.9998999834060669
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Scheduling 10000 events took: 3.30ms",
+          "Rendering took: 2.10ms",
+          "Final value: 0.9998999834060669"
+        ]
+      }
+    ]
+  },
+  {
+    "browser": "Firefox",
+    "version": "148.0.2",
+    "results": [
+      {
+        "testName": "1. AudioParam.value setter (immediate)",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Initial value after set: 0.5",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "2. setValueAtTime basic",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately after scheduling: 0",
+          "Value after full render: 1"
+        ]
+      },
+      {
+        "testName": "3. linearRampToValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 0",
+          "Value after render (should be ~1.0 at end): 1"
+        ]
+      },
+      {
+        "testName": "4. exponentialRampToValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 0.009999999776482582",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "5. setTargetAtTime",
+        "values": [
+          0.9999545812606812
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 0",
+          "Value after 1s render (target=1.0, tau=0.1): 0.9999545812606812"
+        ]
+      },
+      {
+        "testName": "6. setValueCurveAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 0",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "7. cancelScheduledValues - cancel ramp mid-way",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately after cancel: 0",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "8. cancelAndHoldAtTime - basic linear ramp",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime threw: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value immediately: 0",
+          "Value after render (should hold at ~0.5): 1"
+        ]
+      },
+      {
+        "testName": "9. cancelAndHoldAtTime - exponential ramp",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime threw: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "10. cancelAndHoldAtTime - setTargetAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime threw: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "11. cancelAndHoldAtTime - setValueCurveAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime threw: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "12. linearRamp without prior setValueAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "13. exponentialRamp without prior setValueAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "14. Multiple setValueAtTime at same time",
+        "values": [
+          0.8999999761581421
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render (last write wins?): 0.8999999761581421"
+        ]
+      },
+      {
+        "testName": "15. cancelScheduledValues then re-schedule",
+        "values": [
+          0.30000001192092896
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after render: 0.30000001192092896"
+        ]
+      },
+      {
+        "testName": "16. cancelAndHoldAtTime then new linearRamp",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Error: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "17. value setter during active automation",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after direct set: 0.75",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "18. exponentialRamp with zero values",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "exponentialRamp from 0: no error thrown",
+          "exponentialRamp to 0 threw: AudioParam.exponentialRampToValueAtTime: The value passed to exponentialRampToValueAtTime must be non-zero.",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "19. setValueCurveAtTime overlap with setValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "setValueAtTime during curve threw: AudioParam.setValueAtTime: Can't add events during a curve event",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "20. Multiple cancelAndHoldAtTime calls",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Double cancelAndHold error: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "21. Sample-accurate values mid-ramp via OfflineAudioContext",
+        "values": [
+          0,
+          0.25,
+          0.5,
+          0.75,
+          0.999958336353302
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Sample[0] = 0.000000",
+          "Sample[6000] = 0.250000",
+          "Sample[12000] = 0.500000",
+          "Sample[18000] = 0.750000",
+          "Sample[23999] = 0.999958"
+        ]
+      },
+      {
+        "testName": "22. cancelAndHoldAtTime sample-accurate capture",
+        "values": [
+          0.25,
+          0.5,
+          0.75,
+          0.9999791383743286
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHold error: constantSrc.offset.cancelAndHoldAtTime is not a function",
+          "t=0.25s sample[12000] = 0.250000",
+          "t=0.5s sample[24000] = 0.500000",
+          "t=0.75s sample[36000] = 0.750000",
+          "t=1s sample[47999] = 0.999979"
+        ]
+      },
+      {
+        "testName": "23. cancelScheduledValues sample-accurate capture",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.25s sample[12000] = 0.000000",
+          "t=0.49s sample[23520] = 0.000000",
+          "t=0.5s sample[24000] = 0.000000",
+          "t=0.51s sample[24480] = 0.000000",
+          "t=0.75s sample[36000] = 0.000000",
+          "t=1s sample[47999] = 0.000000"
+        ]
+      },
+      {
+        "testName": "24. setTargetAtTime convergence precision",
+        "values": [
+          0.6321205496788025,
+          0.8646647334098816,
+          0.9502129554748535,
+          0.9932620525360107,
+          0.9999545812606812
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.1s actual=0.632121 expected=0.632121 diff=0.00000001",
+          "t=0.2s actual=0.864665 expected=0.864665 diff=0.00000002",
+          "t=0.3s actual=0.950213 expected=0.950213 diff=0.00000002",
+          "t=0.5s actual=0.993262 expected=0.993262 diff=0.00000000",
+          "t=1s actual=0.999955 expected=0.999955 diff=0.00000002"
+        ]
+      },
+      {
+        "testName": "25. AudioParam defaultValue, minValue, maxValue",
+        "values": [
+          1,
+          440,
+          350
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "gain.gain: default=1 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "osc.frequency: default=440 min=-24000 max=24000",
+          "osc.detune: default=0 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "biquad.frequency: default=350 min=-24000 max=24000",
+          "biquad.Q: default=1 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "biquad.gain: default=0 min=-3.4028234663852886e+38 max=3.4028234663852886e+38"
+        ]
+      },
+      {
+        "testName": "26. setValueAtTime with negative time",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "setValueAtTime(-1) threw: RangeError: AudioParam.setValueAtTime: The start time for an AudioParam method must be non-negative."
+        ]
+      },
+      {
+        "testName": "27. cancelAndHoldAtTime at time 0",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime(0): TypeError: gain.gain.cancelAndHoldAtTime is not a function",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "28. cancelScheduledValues at time 0 (cancel everything)",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "29. Value after ramp completes (no further events)",
+        "values": [
+          0.20000000298023224,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.1s = 0.200000",
+          "t=0.25s = 0.500000",
+          "t=0.5s = 0.500000",
+          "t=0.75s = 0.500000",
+          "t=1s = 0.500000"
+        ]
+      },
+      {
+        "testName": "30. cancelAndHoldAtTime after events already finished",
+        "values": [
+          0.4000000059604645,
+          1,
+          1,
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime error: constantSrc.offset.cancelAndHoldAtTime is not a function",
+          "t=0.1s = 0.400000",
+          "t=0.25s = 1.000000",
+          "t=0.5s = 1.000000",
+          "t=0.75s = 1.000000"
+        ]
+      },
+      {
+        "testName": "31. automationRate a-rate vs k-rate",
+        "values": [
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "a-rate samples: [0]=0.0000 [64]=0.2500 [128]=0.5000 [255]=0.9961",
+          "k-rate samples: [0]=0.0000 [64]=0.2500 [128]=0.5000 [255]=0.9961",
+          "k-rate staircase pattern: false"
+        ]
+      },
+      {
+        "testName": "32. setValueCurveAtTime with single-value curve",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Single-value curve threw: InvalidStateError: AudioParam.setValueCurveAtTime: Curve length must be at least 2"
+        ]
+      },
+      {
+        "testName": "33. setValueCurveAtTime with zero duration",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Zero duration curve threw: RangeError: AudioParam.setValueCurveAtTime: The curve duration for setValueCurveAtTime must be strictly positive."
+        ]
+      },
+      {
+        "testName": "34. Many scheduled events performance",
+        "values": [
+          0.9998999834060669
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Scheduling 10000 events took: 47.00ms",
+          "Rendering took: 27.00ms",
+          "Final value: 0.9998999834060669"
+        ]
+      }
+    ]
+  },
+  {
+    "browser": "WebKit (Safari)",
+    "version": "26.4",
+    "results": [
+      {
+        "testName": "1. AudioParam.value setter (immediate)",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Initial value after set: 0.5",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "2. setValueAtTime basic",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately after scheduling: 1",
+          "Value after full render: 1"
+        ]
+      },
+      {
+        "testName": "3. linearRampToValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render (should be ~1.0 at end): 1"
+        ]
+      },
+      {
+        "testName": "4. exponentialRampToValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "5. setTargetAtTime",
+        "values": [
+          0.9999553561210632
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after 1s render (target=1.0, tau=0.1): 0.9999553561210632"
+        ]
+      },
+      {
+        "testName": "6. setValueCurveAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "7. cancelScheduledValues - cancel ramp mid-way",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately after cancel: 1",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "8. cancelAndHoldAtTime - basic linear ramp",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value immediately: 1",
+          "Value after render (should hold at ~0.5): 0.5"
+        ]
+      },
+      {
+        "testName": "9. cancelAndHoldAtTime - exponential ramp",
+        "values": [
+          0.09999999403953552
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value after render: 0.09999999403953552"
+        ]
+      },
+      {
+        "testName": "10. cancelAndHoldAtTime - setTargetAtTime",
+        "values": [
+          0.9502124786376953
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value after render: 0.9502124786376953"
+        ]
+      },
+      {
+        "testName": "11. cancelAndHoldAtTime - setValueCurveAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime succeeded",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "12. linearRamp without prior setValueAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "13. exponentialRamp without prior setValueAtTime",
+        "values": [
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render: 0.5"
+        ]
+      },
+      {
+        "testName": "14. Multiple setValueAtTime at same time",
+        "values": [
+          0.8999999761581421
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value immediately: 1",
+          "Value after render (last write wins?): 0.8999999761581421"
+        ]
+      },
+      {
+        "testName": "15. cancelScheduledValues then re-schedule",
+        "values": [
+          0.30000001192092896
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after render: 0.30000001192092896"
+        ]
+      },
+      {
+        "testName": "16. cancelAndHoldAtTime then new linearRamp",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHold + new ramp succeeded",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "17. value setter during active automation",
+        "values": [
+          0.9999957084655762
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after direct set: 0.75",
+          "Value after render: 0.9999957084655762"
+        ]
+      },
+      {
+        "testName": "18. exponentialRamp with zero values",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "exponentialRamp from 0: no error thrown",
+          "exponentialRamp to 0 threw: value cannot be 0",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "19. setValueCurveAtTime overlap with setValueAtTime",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "setValueAtTime during curve threw: Events are overlapping",
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "20. Multiple cancelAndHoldAtTime calls",
+        "values": [
+          0.5249999761581421
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Double cancelAndHold succeeded",
+          "Value after render: 0.5249999761581421"
+        ]
+      },
+      {
+        "testName": "21. Sample-accurate values mid-ramp via OfflineAudioContext",
+        "values": [
+          0,
+          0.2500000596046448,
+          0.4999997019767761,
+          0.7499997615814209,
+          0.9999581575393677
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Sample[0] = 0.000000",
+          "Sample[6000] = 0.250000",
+          "Sample[12000] = 0.500000",
+          "Sample[18000] = 0.750000",
+          "Sample[23999] = 0.999958"
+        ]
+      },
+      {
+        "testName": "22. cancelAndHoldAtTime sample-accurate capture",
+        "values": [
+          0.24999985098838806,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHold at 0.5s",
+          "t=0.25s sample[12000] = 0.250000",
+          "t=0.5s sample[24000] = 0.500000",
+          "t=0.75s sample[36000] = 0.500000",
+          "t=1s sample[47999] = 0.500000"
+        ]
+      },
+      {
+        "testName": "23. cancelScheduledValues sample-accurate capture",
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.25s sample[12000] = 0.000000",
+          "t=0.49s sample[23520] = 0.000000",
+          "t=0.5s sample[24000] = 0.000000",
+          "t=0.51s sample[24480] = 0.000000",
+          "t=0.75s sample[36000] = 0.000000",
+          "t=1s sample[47999] = 0.000000"
+        ]
+      },
+      {
+        "testName": "24. setTargetAtTime convergence precision",
+        "values": [
+          0.6321197748184204,
+          0.8646642565727234,
+          0.9502124786376953,
+          0.9932622313499451,
+          0.9999553561210632
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.1s actual=0.632120 expected=0.632121 diff=0.00000078",
+          "t=0.2s actual=0.864664 expected=0.864665 diff=0.00000046",
+          "t=0.3s actual=0.950212 expected=0.950213 diff=0.00000045",
+          "t=0.5s actual=0.993262 expected=0.993262 diff=0.00000018",
+          "t=1s actual=0.999955 expected=0.999955 diff=0.00000076"
+        ]
+      },
+      {
+        "testName": "25. AudioParam defaultValue, minValue, maxValue",
+        "values": [
+          1,
+          440,
+          350
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "gain.gain: default=1 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "osc.frequency: default=440 min=-24000 max=24000",
+          "osc.detune: default=0 min=-153600 max=153600",
+          "biquad.frequency: default=350 min=0 max=24000",
+          "biquad.Q: default=1 min=-3.4028234663852886e+38 max=3.4028234663852886e+38",
+          "biquad.gain: default=0 min=-3.4028234663852886e+38 max=1541.273681640625"
+        ]
+      },
+      {
+        "testName": "26. setValueAtTime with negative time",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "setValueAtTime(-1) threw: RangeError: startTime must be a positive value"
+        ]
+      },
+      {
+        "testName": "27. cancelAndHoldAtTime at time 0",
+        "values": [
+          0
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime(0): succeeded",
+          "Value after render: 0"
+        ]
+      },
+      {
+        "testName": "28. cancelScheduledValues at time 0 (cancel everything)",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Value after render: 1"
+        ]
+      },
+      {
+        "testName": "29. Value after ramp completes (no further events)",
+        "values": [
+          0.20000004768371582,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "t=0.1s = 0.200000",
+          "t=0.25s = 0.500000",
+          "t=0.5s = 0.500000",
+          "t=0.75s = 0.500000",
+          "t=1s = 0.500000"
+        ]
+      },
+      {
+        "testName": "30. cancelAndHoldAtTime after events already finished",
+        "values": [
+          0.40000009536743164,
+          1,
+          1,
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "cancelAndHoldAtTime(0.5) after ramp ends at 0.25: ok",
+          "t=0.1s = 0.400000",
+          "t=0.25s = 1.000000",
+          "t=0.5s = 1.000000",
+          "t=0.75s = 1.000000"
+        ]
+      },
+      {
+        "testName": "31. automationRate a-rate vs k-rate",
+        "values": [
+          0.5,
+          0.5
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "a-rate samples: [0]=0.0000 [64]=0.2500 [128]=0.5000 [255]=0.9961",
+          "k-rate samples: [0]=0.0000 [64]=0.0000 [128]=0.5000 [255]=0.5000",
+          "k-rate staircase pattern: true"
+        ]
+      },
+      {
+        "testName": "32. setValueCurveAtTime with single-value curve",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Single-value curve threw: InvalidStateError: Array must have a length of at least 2"
+        ]
+      },
+      {
+        "testName": "33. setValueCurveAtTime with zero duration",
+        "values": [
+          1
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Zero duration curve threw: RangeError: duration must be a strictly positive value"
+        ]
+      },
+      {
+        "testName": "34. Many scheduled events performance",
+        "values": [
+          0.9998999834060669
+        ],
+        "warnings": [],
+        "errors": [],
+        "logs": [
+          "Scheduling 10000 events took: 53.00ms",
+          "Rendering took: 28.00ms",
+          "Final value: 0.9998999834060669"
+        ]
+      }
+    ]
+  }
+]

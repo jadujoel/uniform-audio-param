@@ -1,0 +1,1080 @@
+{
+  "withoutPolyfill": [
+    {
+      "browser": "Chromium (WITHOUT polyfill)",
+      "version": "147.0.7727.15",
+      "results": [
+        {
+          "testName": "1. cancelAndHoldAtTime - linear ramp hold at 0.5",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "2. cancelAndHoldAtTime - exponential ramp",
+          "values": [
+            0.09999999403953552
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.09999999403953552"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "3. cancelAndHoldAtTime - setTargetAtTime",
+          "values": [
+            0.9502127766609192
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.9502127766609192"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "4. cancelAndHoldAtTime - setValueCurveAtTime",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "5. cancelAndHoldAtTime then new linearRamp",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHold + new ramp: ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "6. Double cancelAndHoldAtTime",
+          "values": [
+            0.5249999761581421
+          ],
+          "logs": [
+            "Double cancelAndHold: ok",
+            "Final value: 0.5249999761581421"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "7. cancelAndHoldAtTime at time 0",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHoldAtTime(0): ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "8. cancelAndHoldAtTime sample-accurate (ConstantSource)",
+          "values": [
+            0.25,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "logs": [
+            "cancelAndHold at 0.5s: ok",
+            "t=0.25s sample[12000] = 0.250000",
+            "t=0.5s sample[24000] = 0.500000",
+            "t=0.75s sample[36000] = 0.500000",
+            "t=1s sample[47999] = 0.500000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "9. cancelAndHoldAtTime after events finished",
+          "values": [
+            0.4000000059604645,
+            1,
+            1,
+            1
+          ],
+          "logs": [
+            "cancelAndHold after ramp ends: ok",
+            "t=0.1s = 0.400000",
+            "t=0.25s = 1.000000",
+            "t=0.5s = 1.000000",
+            "t=0.75s = 1.000000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "10. Basic scheduling still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Scheduled ramp 0->1 over 0.5s",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "11. cancelScheduledValues still works with polyfill",
+          "values": [
+            0
+          ],
+          "logs": [
+            "Final value after cancel at 0.5: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "12. setTargetAtTime still works with polyfill",
+          "values": [
+            0.9932624101638794
+          ],
+          "logs": [
+            "t=0.5s value: 0.993262 (expected ~0.993262)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "13. setValueCurveAtTime still works with polyfill",
+          "values": [
+            0.5,
+            0.999958336353302
+          ],
+          "logs": [
+            "Mid curve value: 0.500000 (expected ~0.5)",
+            "End curve value: 0.999958 (expected ~1.0)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "14. exponentialRamp still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "15. getScheduledValueAtTime (bonus helper)",
+          "values": [],
+          "logs": [
+            "getScheduledValueAtTime not available"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "browser": "Firefox (WITHOUT polyfill)",
+      "version": "148.0.2",
+      "results": [
+        {
+          "testName": "1. cancelAndHoldAtTime - linear ramp hold at 0.5",
+          "values": [
+            1
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "2. cancelAndHoldAtTime - exponential ramp",
+          "values": [
+            1
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "3. cancelAndHoldAtTime - setTargetAtTime",
+          "values": [
+            1
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "4. cancelAndHoldAtTime - setValueCurveAtTime",
+          "values": [
+            1
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "5. cancelAndHoldAtTime then new linearRamp",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Error: gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "6. Double cancelAndHoldAtTime",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Double cancelAndHold error: gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "7. cancelAndHoldAtTime at time 0",
+          "values": [
+            1
+          ],
+          "logs": [
+            "cancelAndHoldAtTime(0): gain.gain.cancelAndHoldAtTime is not a function",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "8. cancelAndHoldAtTime sample-accurate (ConstantSource)",
+          "values": [
+            0.25,
+            0.5,
+            0.75,
+            0.9999791383743286
+          ],
+          "logs": [
+            "cancelAndHold error: cs.offset.cancelAndHoldAtTime is not a function",
+            "t=0.25s sample[12000] = 0.250000",
+            "t=0.5s sample[24000] = 0.500000",
+            "t=0.75s sample[36000] = 0.750000",
+            "t=1s sample[47999] = 0.999979"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "9. cancelAndHoldAtTime after events finished",
+          "values": [
+            0.4000000059604645,
+            1,
+            1,
+            1
+          ],
+          "logs": [
+            "Error: cs.offset.cancelAndHoldAtTime is not a function",
+            "t=0.1s = 0.400000",
+            "t=0.25s = 1.000000",
+            "t=0.5s = 1.000000",
+            "t=0.75s = 1.000000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "10. Basic scheduling still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Scheduled ramp 0->1 over 0.5s",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "11. cancelScheduledValues still works with polyfill",
+          "values": [
+            0
+          ],
+          "logs": [
+            "Final value after cancel at 0.5: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "12. setTargetAtTime still works with polyfill",
+          "values": [
+            0.9932620525360107
+          ],
+          "logs": [
+            "t=0.5s value: 0.993262 (expected ~0.993262)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "13. setValueCurveAtTime still works with polyfill",
+          "values": [
+            0.5,
+            0.999958336353302
+          ],
+          "logs": [
+            "Mid curve value: 0.500000 (expected ~0.5)",
+            "End curve value: 0.999958 (expected ~1.0)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "14. exponentialRamp still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "15. getScheduledValueAtTime (bonus helper)",
+          "values": [],
+          "logs": [
+            "getScheduledValueAtTime not available"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "browser": "WebKit (WITHOUT polyfill)",
+      "version": "26.4",
+      "results": [
+        {
+          "testName": "1. cancelAndHoldAtTime - linear ramp hold at 0.5",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "2. cancelAndHoldAtTime - exponential ramp",
+          "values": [
+            0.09999999403953552
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.09999999403953552"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "3. cancelAndHoldAtTime - setTargetAtTime",
+          "values": [
+            0.9502124786376953
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.9502124786376953"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "4. cancelAndHoldAtTime - setValueCurveAtTime",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "5. cancelAndHoldAtTime then new linearRamp",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHold + new ramp: ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "6. Double cancelAndHoldAtTime",
+          "values": [
+            0.5249999761581421
+          ],
+          "logs": [
+            "Double cancelAndHold: ok",
+            "Final value: 0.5249999761581421"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "7. cancelAndHoldAtTime at time 0",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHoldAtTime(0): ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "8. cancelAndHoldAtTime sample-accurate (ConstantSource)",
+          "values": [
+            0.24999985098838806,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "logs": [
+            "cancelAndHold at 0.5s: ok",
+            "t=0.25s sample[12000] = 0.250000",
+            "t=0.5s sample[24000] = 0.500000",
+            "t=0.75s sample[36000] = 0.500000",
+            "t=1s sample[47999] = 0.500000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "9. cancelAndHoldAtTime after events finished",
+          "values": [
+            0.40000009536743164,
+            1,
+            1,
+            1
+          ],
+          "logs": [
+            "cancelAndHold after ramp ends: ok",
+            "t=0.1s = 0.400000",
+            "t=0.25s = 1.000000",
+            "t=0.5s = 1.000000",
+            "t=0.75s = 1.000000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "10. Basic scheduling still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Scheduled ramp 0->1 over 0.5s",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "11. cancelScheduledValues still works with polyfill",
+          "values": [
+            0
+          ],
+          "logs": [
+            "Final value after cancel at 0.5: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "12. setTargetAtTime still works with polyfill",
+          "values": [
+            0.9932622313499451
+          ],
+          "logs": [
+            "t=0.5s value: 0.993262 (expected ~0.993262)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "13. setValueCurveAtTime still works with polyfill",
+          "values": [
+            0.5,
+            0.999958336353302
+          ],
+          "logs": [
+            "Mid curve value: 0.500000 (expected ~0.5)",
+            "End curve value: 0.999958 (expected ~1.0)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "14. exponentialRamp still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "15. getScheduledValueAtTime (bonus helper)",
+          "values": [],
+          "logs": [
+            "getScheduledValueAtTime not available"
+          ],
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "withPolyfill": [
+    {
+      "browser": "Chromium (WITH polyfill)",
+      "version": "147.0.7727.15",
+      "results": [
+        {
+          "testName": "1. cancelAndHoldAtTime - linear ramp hold at 0.5",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "2. cancelAndHoldAtTime - exponential ramp",
+          "values": [
+            0.09999999403953552
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.09999999403953552"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "3. cancelAndHoldAtTime - setTargetAtTime",
+          "values": [
+            0.9502127766609192
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.9502127766609192"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "4. cancelAndHoldAtTime - setValueCurveAtTime",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "5. cancelAndHoldAtTime then new linearRamp",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHold + new ramp: ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "6. Double cancelAndHoldAtTime",
+          "values": [
+            0.5249999761581421
+          ],
+          "logs": [
+            "Double cancelAndHold: ok",
+            "Final value: 0.5249999761581421"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "7. cancelAndHoldAtTime at time 0",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHoldAtTime(0): ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "8. cancelAndHoldAtTime sample-accurate (ConstantSource)",
+          "values": [
+            0.25,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "logs": [
+            "cancelAndHold at 0.5s: ok",
+            "t=0.25s sample[12000] = 0.250000",
+            "t=0.5s sample[24000] = 0.500000",
+            "t=0.75s sample[36000] = 0.500000",
+            "t=1s sample[47999] = 0.500000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "9. cancelAndHoldAtTime after events finished",
+          "values": [
+            0.4000000059604645,
+            1,
+            1,
+            1
+          ],
+          "logs": [
+            "cancelAndHold after ramp ends: ok",
+            "t=0.1s = 0.400000",
+            "t=0.25s = 1.000000",
+            "t=0.5s = 1.000000",
+            "t=0.75s = 1.000000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "10. Basic scheduling still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Scheduled ramp 0->1 over 0.5s",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "11. cancelScheduledValues still works with polyfill",
+          "values": [
+            0
+          ],
+          "logs": [
+            "Final value after cancel at 0.5: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "12. setTargetAtTime still works with polyfill",
+          "values": [
+            0.9932624101638794
+          ],
+          "logs": [
+            "t=0.5s value: 0.993262 (expected ~0.993262)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "13. setValueCurveAtTime still works with polyfill",
+          "values": [
+            0.5,
+            0.999958336353302
+          ],
+          "logs": [
+            "Mid curve value: 0.500000 (expected ~0.5)",
+            "End curve value: 0.999958 (expected ~1.0)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "14. exponentialRamp still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "15. getScheduledValueAtTime (bonus helper)",
+          "values": [],
+          "logs": [
+            "getScheduledValueAtTime not available"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "browser": "Firefox (WITH polyfill)",
+      "version": "148.0.2",
+      "results": [
+        {
+          "testName": "1. cancelAndHoldAtTime - linear ramp hold at 0.5",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "2. cancelAndHoldAtTime - exponential ramp",
+          "values": [
+            0.10000000149011612
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.10000000149011612"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "3. cancelAndHoldAtTime - setTargetAtTime",
+          "values": [
+            0.9502129554748535
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.9502129554748535"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "4. cancelAndHoldAtTime - setValueCurveAtTime",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "5. cancelAndHoldAtTime then new linearRamp",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHold + new ramp: ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "6. Double cancelAndHoldAtTime",
+          "values": [
+            0.5249999761581421
+          ],
+          "logs": [
+            "Double cancelAndHold: ok",
+            "Final value: 0.5249999761581421"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "7. cancelAndHoldAtTime at time 0",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHoldAtTime(0): ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "8. cancelAndHoldAtTime sample-accurate (ConstantSource)",
+          "values": [
+            0.25,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "logs": [
+            "cancelAndHold at 0.5s: ok",
+            "t=0.25s sample[12000] = 0.250000",
+            "t=0.5s sample[24000] = 0.500000",
+            "t=0.75s sample[36000] = 0.500000",
+            "t=1s sample[47999] = 0.500000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "9. cancelAndHoldAtTime after events finished",
+          "values": [
+            0.4000000059604645,
+            1,
+            1,
+            1
+          ],
+          "logs": [
+            "cancelAndHold after ramp ends: ok",
+            "t=0.1s = 0.400000",
+            "t=0.25s = 1.000000",
+            "t=0.5s = 1.000000",
+            "t=0.75s = 1.000000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "10. Basic scheduling still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Scheduled ramp 0->1 over 0.5s",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "11. cancelScheduledValues still works with polyfill",
+          "values": [
+            0
+          ],
+          "logs": [
+            "Final value after cancel at 0.5: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "12. setTargetAtTime still works with polyfill",
+          "values": [
+            0.9932620525360107
+          ],
+          "logs": [
+            "t=0.5s value: 0.993262 (expected ~0.993262)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "13. setValueCurveAtTime still works with polyfill",
+          "values": [
+            0.5,
+            0.999958336353302
+          ],
+          "logs": [
+            "Mid curve value: 0.500000 (expected ~0.5)",
+            "End curve value: 0.999958 (expected ~1.0)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "14. exponentialRamp still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "15. getScheduledValueAtTime (bonus helper)",
+          "values": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "logs": [
+            "t=0.25: 0.2500",
+            "t=0.50: 0.5000",
+            "t=0.75: 0.7500"
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "browser": "WebKit (WITH polyfill)",
+      "version": "26.4",
+      "results": [
+        {
+          "testName": "1. cancelAndHoldAtTime - linear ramp hold at 0.5",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "2. cancelAndHoldAtTime - exponential ramp",
+          "values": [
+            0.09999999403953552
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.09999999403953552"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "3. cancelAndHoldAtTime - setTargetAtTime",
+          "values": [
+            0.9502124786376953
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.9502124786376953"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "4. cancelAndHoldAtTime - setValueCurveAtTime",
+          "values": [
+            0.5
+          ],
+          "logs": [
+            "cancelAndHoldAtTime: ok",
+            "Final value: 0.5"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "5. cancelAndHoldAtTime then new linearRamp",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHold + new ramp: ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "6. Double cancelAndHoldAtTime",
+          "values": [
+            0.5249999761581421
+          ],
+          "logs": [
+            "Double cancelAndHold: ok",
+            "Final value: 0.5249999761581421"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "7. cancelAndHoldAtTime at time 0",
+          "values": [
+            0
+          ],
+          "logs": [
+            "cancelAndHoldAtTime(0): ok",
+            "Final value: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "8. cancelAndHoldAtTime sample-accurate (ConstantSource)",
+          "values": [
+            0.24999985098838806,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "logs": [
+            "cancelAndHold at 0.5s: ok",
+            "t=0.25s sample[12000] = 0.250000",
+            "t=0.5s sample[24000] = 0.500000",
+            "t=0.75s sample[36000] = 0.500000",
+            "t=1s sample[47999] = 0.500000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "9. cancelAndHoldAtTime after events finished",
+          "values": [
+            0.40000009536743164,
+            1,
+            1,
+            1
+          ],
+          "logs": [
+            "cancelAndHold after ramp ends: ok",
+            "t=0.1s = 0.400000",
+            "t=0.25s = 1.000000",
+            "t=0.5s = 1.000000",
+            "t=0.75s = 1.000000"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "10. Basic scheduling still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Scheduled ramp 0->1 over 0.5s",
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "11. cancelScheduledValues still works with polyfill",
+          "values": [
+            0
+          ],
+          "logs": [
+            "Final value after cancel at 0.5: 0"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "12. setTargetAtTime still works with polyfill",
+          "values": [
+            0.9932622313499451
+          ],
+          "logs": [
+            "t=0.5s value: 0.993262 (expected ~0.993262)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "13. setValueCurveAtTime still works with polyfill",
+          "values": [
+            0.5,
+            0.999958336353302
+          ],
+          "logs": [
+            "Mid curve value: 0.500000 (expected ~0.5)",
+            "End curve value: 0.999958 (expected ~1.0)"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "14. exponentialRamp still works with polyfill",
+          "values": [
+            1
+          ],
+          "logs": [
+            "Final value: 1"
+          ],
+          "errors": []
+        },
+        {
+          "testName": "15. getScheduledValueAtTime (bonus helper)",
+          "values": [],
+          "logs": [
+            "getScheduledValueAtTime not available"
+          ],
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

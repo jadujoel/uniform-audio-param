@@ -1,0 +1,28 @@
+{
+  "name": "@jadujoel/uniform-audio-param",
+  "module": "dist/audio-param-polyfill.js",
+  "main": "dist/audio-param-polyfill.js",
+  "types": "dist/audio-param-polyfill.d.ts",
+  "type": "module",
+  "private": false,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "bun build audio-param-polyfill.ts --outdir dist --minify && bunx tsc --declaration --emitDeclarationOnly --outDir dist audio-param-polyfill.ts",
+    "test": "bun test-polyfill.ts",
+    "test:all": "bun test-audio-params.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^6"
+  },
+  "dependencies": {
+    "playwright": "1.59.1"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "audio-param-polyfill.ts"
+  ]
+}
