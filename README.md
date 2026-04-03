@@ -7,7 +7,10 @@ Cross-browser polyfill that normalizes `AudioParam` behavior across Chromium, Fi
 - **`cancelAndHoldAtTime`** — Polyfills the missing method in Firefox by tracking scheduled automation events and computing the held value mathematically.
 - **`getScheduledValueAtTime`** — Utility to read the computed value of an AudioParam at any point in time, even before rendering.
 
-The polyfill auto-applies on import. It only patches what's missing.
+Two flavors are provided:
+
+- **Auto-patching** (default import) — patches `AudioParam.prototype` on import. Zero config.
+- **Manual** (`/manual` import) — polyfill individual `AudioParam` instances explicitly, avoiding prototype monkey-patching.
 
 ## Install
 
